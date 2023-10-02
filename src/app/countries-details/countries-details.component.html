@@ -1,0 +1,105 @@
+<nav class="flex items-center w-full h-18 md:h-20 bg-gray-400">
+  <div class="md:flex w-full">
+    <h1 class="w-64 md:w-96 px-6 text-white text-xl">Search Countries</h1>
+    <div class="flex gap-4 text-white text-lg w-full md:px-0 px-6">
+      <a routerLink="/home" class="hover:text-yellow-400">Ínicio</a>
+    </div>
+  </div>
+  <div class="flex px-4 gap-4">
+    <h1 class="text-white text-xl">{{ userData.username }}</h1>
+    <a href="">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 py-1 text-white"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5.636 5.636a9 9 0 1012.728 0M12 3v9"
+        />
+      </svg>
+    </a>
+  </div>
+  <router-outlet></router-outlet>
+</nav>
+<div class="flex justify-around items-center w-full h-screen bg-white">
+  <div
+    class="flex justify-center w-10/12 md:w-5/12 py-10 border-2 border-gray-400 shadow-lg shadow-gray-500 px-6 rounded-md"
+  >
+    <form
+      class="flex flex-col w-10/12 sm:w-4/5"
+      [formGroup]="changeCountry"
+      (ngSubmit)="submitChangeCountry()"
+    >
+      <h1 class="text-2xl text-gray-400 text-center">Altere o País</h1>
+      <label class="flex text-gray-800" for="name">Nome</label>
+      <div
+        class="flex items-center border-b-2 border-gray-300 focus-within:border-gray-600 mb-2"
+      >
+        <input
+          name="name"
+          id="name"
+          formControlName="name"
+          class="peer w-full bg-transparent focus:outline-none text-lg sm:text-xl py-1 text-gray-900"
+          placeholder="{{ country.name }}"
+          type="text"
+          required
+        />
+      </div>
+      <label class="flex text-gray-800" for="sigla">Sigla</label>
+      <div
+        class="flex items-center border-b-2 border-gray-300 focus-within:border-gray-600 mb-2"
+      >
+        <input
+          name="uf"
+          id="uf"
+          formControlName="uf"
+          class="peer w-full bg-transparent focus:outline-none text-lg sm:text-xl py-1 text-gray-900"
+          placeholder="{{ country.uf }}"
+          type="text"
+          required
+        />
+      </div>
+      <label class="flex text-gray-800" for="gentilico">Gentílico</label>
+      <div
+        class="flex items-center border-b-2 border-gray-300 focus-within:border-gray-600 mb-4"
+      >
+        <input
+          name="gentle"
+          id="gentle"
+          formControlName="gentle"
+          class="peer w-full bg-transparent focus:outline-none text-lg sm:text-xl py-1 text-gray-900"
+          placeholder="{{ country.gentle }}"
+          type="text"
+          required
+        />
+      </div>
+      <div
+        *ngIf="showMessage"
+        class="p-4 mb-4 text-sm text-green-500 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-blue-400"
+        role="alert"
+      >
+        <span class="font-medium">País alterado com sucesso!</span>
+      </div>
+      <div
+        *ngIf="showMessageError"
+        class="p-4 mb-4 text-sm text-red-500 rounded-lg bg-gray-100 dark:bg-gray-800 dark:text-gray-400"
+        role="alert"
+      >
+        <span class="font-medium">Erro ao alterar País!</span>
+      </div>
+      <div class="flex flex-col space-y-6 py-8">
+        <button
+          class="bg-gray-400 shadow-lg shadow-gray-600 text-white text-xl w-full py-2 rounded-lg"
+          type="submit"
+        >
+          Enviar alteração
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
